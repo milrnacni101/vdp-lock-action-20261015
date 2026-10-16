@@ -1,0 +1,10 @@
+name: Lockfile identity probe
+description: Synthetic action used only for an owned GitHub bounty test
+runs:
+  using: composite
+  steps:
+    - name: Emit original marker
+      shell: bash
+      run: |
+        echo "LOCK_ORIGINAL_ACTION_EXECUTED"
+        echo "LOCK_ORIGINAL_ACTION_EXECUTED" >> "$GITHUB_STEP_SUMMARY"
