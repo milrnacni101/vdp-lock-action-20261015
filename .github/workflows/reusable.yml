@@ -6,5 +6,7 @@ jobs:
   nested:
     runs-on: ubuntu-latest
     steps:
+      - name: Emit mutated reusable workflow marker
+        run: echo "LOCK_MUTATED_REUSABLE_WORKFLOW_EXECUTED"
       - name: Run nested synthetic action
         uses: milrnacni101/vdp-lock-action-replacement-20261015@v1
