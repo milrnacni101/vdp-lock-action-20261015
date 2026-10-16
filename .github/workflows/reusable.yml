@@ -3,10 +3,8 @@ on:
   workflow_call:
 permissions: {}
 jobs:
-  nested:
+  reusable:
     runs-on: ubuntu-latest
     steps:
-      - name: Emit mutated reusable workflow marker
-        run: echo "LOCK_MUTATED_REUSABLE_WORKFLOW_EXECUTED"
-      - name: Run nested synthetic action
-        uses: milrnacni101/vdp-lock-action-replacement-20261015@v1
+      - name: Emit baseline reusable workflow marker
+        run: echo "LOCK_BASELINE_REUSABLE_WORKFLOW_EXECUTED"
