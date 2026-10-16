@@ -1,0 +1,10 @@
+name: Synthetic reusable lockfile fixture
+on:
+  workflow_call:
+permissions: {}
+jobs:
+  nested:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run nested synthetic action
+        uses: milrnacni101/vdp-lock-action-replacement-20261015@v1
