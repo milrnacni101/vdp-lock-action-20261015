@@ -3,8 +3,8 @@ description: Synthetic action used only for an owned GitHub bounty test
 runs:
   using: composite
   steps:
-    - name: Emit original marker
+    - name: Emit synthetic marker
       shell: bash
       run: |
-        echo "LOCK_ORIGINAL_ACTION_EXECUTED"
-        echo "LOCK_ORIGINAL_ACTION_EXECUTED" >> "$GITHUB_STEP_SUMMARY"
+        echo "LOCK_MUTATED_ACTION_EXECUTED"
+        echo "LOCK_MUTATED_ACTION_EXECUTED" >> "$GITHUB_STEP_SUMMARY"
