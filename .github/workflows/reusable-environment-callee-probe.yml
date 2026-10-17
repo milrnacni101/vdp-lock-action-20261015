@@ -1,0 +1,26 @@
+name: Reusable environment callee probe
+on:
+  workflow_call:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  environment-probe:
+    environment: owned-callee-sensitive-20261017
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hash environment secret without disclosure
+        env:
+          VALUE: ${{ secrets.CALLEE_ENV_SECRET }}
+        run: |
+          if [ -n "$VALUE" ]; then present=true; else present=false; fi
+          printf 'present=%s\n' "$present" > environment-result.txt
+          printf 'length=%s\n' "${#VALUE}" >> environment-result.txt
+          printf 'sha256=%s\n' "$(printf %s "$VALUE" | sha256sum | cut -d' ' -f1)" >> environment-result.txt
+          printf 'repository=%s\n' "${{ github.repository }}" >> environment-result.txt
+      - name: Upload metadata result
+        uses: actions/upload-artifact@v4
+        with:
+          name: environment-secret-result
+          path: environment-result.txt
+          retention-days: 1
